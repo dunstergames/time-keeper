@@ -42,6 +42,7 @@ gracePeriod = 300
 tiles.loadMap(tiles.createMap(tilemap`level0`))
 playerSprite = sprites.create(assets.image`Player`, SpriteKind.Player)
 tiles.placeOnRandomTile(playerSprite, sprites.dungeon.stairSouth)
+playerSprite.y += -5
 scene.cameraFollowSprite(playerSprite)
 let timerSprite = sprites.create(img`
     . . . . . . . . . . . . . . . . 
