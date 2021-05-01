@@ -28,7 +28,7 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 function onPlayerAction () {
     timeSinceTick = game.runtime() % actionInterval
     timeUntilTick = actionInterval - timeSinceTick
-    if (timeSinceTick > gracePeriod && timeUntilTick < gracePeriod) {
+    if (timeSinceTick > gracePeriod && timeUntilTick > gracePeriod) {
         scene.cameraShake(2, actionInterval)
     }
 }
@@ -38,7 +38,7 @@ let playerSprite: Sprite = null
 let gracePeriod = 0
 let actionInterval = 0
 actionInterval = 500
-gracePeriod = actionInterval / 2
+gracePeriod = 200
 tiles.loadMap(tiles.createMap(tilemap`level0`))
 playerSprite = sprites.create(assets.image`Player`, SpriteKind.Player)
 tiles.placeOnRandomTile(playerSprite, sprites.dungeon.stairSouth)
