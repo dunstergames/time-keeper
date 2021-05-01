@@ -38,7 +38,7 @@ let playerSprite: Sprite = null
 let gracePeriod = 0
 let actionInterval = 0
 actionInterval = 500
-gracePeriod = 200
+gracePeriod = 300
 tiles.loadMap(tiles.createMap(tilemap`level0`))
 playerSprite = sprites.create(assets.image`Player`, SpriteKind.Player)
 tiles.placeOnRandomTile(playerSprite, sprites.dungeon.stairSouth)
@@ -69,3 +69,8 @@ assets.animation`Clock`,
 actionInterval,
 true
 )
+game.onUpdateInterval(actionInterval, function () {
+    timer.background(function () {
+        music.playTone(220, music.beat(BeatFraction.Eighth))
+    })
+})
