@@ -3,25 +3,49 @@ namespace SpriteKind {
 }
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(playerSprite), CollisionDirection.Top)))) {
-        playerSprite.y += 0 - tiles.tileWidth()
+        timer.background(function () {
+            playerSprite.setImage(assets.image`backJump`)
+            playerSprite.y += 0 - tiles.tileWidth() / 2
+            pause(200)
+            playerSprite.y += 0 - tiles.tileWidth() / 2
+            playerSprite.setImage(assets.image`backStood`)
+        })
         onPlayerAction()
     }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(playerSprite), CollisionDirection.Left)))) {
-        playerSprite.x += 0 - tiles.tileWidth()
+        timer.background(function () {
+            playerSprite.setImage(assets.image`leftJump`)
+            playerSprite.x += 0 - tiles.tileWidth() / 2
+            pause(200)
+            playerSprite.x += 0 - tiles.tileWidth() / 2
+            playerSprite.setImage(assets.image`leftStood`)
+        })
         onPlayerAction()
     }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(playerSprite), CollisionDirection.Right)))) {
-        playerSprite.x += tiles.tileWidth()
+        timer.background(function () {
+            playerSprite.setImage(assets.image`rightJump`)
+            playerSprite.x += tiles.tileWidth() / 2
+            pause(200)
+            playerSprite.x += tiles.tileWidth() / 2
+            playerSprite.setImage(assets.image`rightStood`)
+        })
         onPlayerAction()
     }
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (!(tiles.tileIsWall(tiles.locationInDirection(tiles.locationOfSprite(playerSprite), CollisionDirection.Bottom)))) {
-        playerSprite.y += tiles.tileWidth()
+        timer.background(function () {
+            playerSprite.setImage(assets.image`frontJump`)
+            playerSprite.y += tiles.tileWidth() / 2
+            pause(200)
+            playerSprite.y += tiles.tileWidth() / 2
+            playerSprite.setImage(assets.image`frontStood`)
+        })
         onPlayerAction()
     }
 })
@@ -38,9 +62,9 @@ let playerSprite: Sprite = null
 let gracePeriod = 0
 let actionInterval = 0
 actionInterval = 500
-gracePeriod = 300
+gracePeriod = 220
 tiles.loadMap(tiles.createMap(tilemap`level0`))
-playerSprite = sprites.create(assets.image`Player`, SpriteKind.Player)
+playerSprite = sprites.create(assets.image`frontStood`, SpriteKind.Player)
 tiles.placeOnRandomTile(playerSprite, sprites.dungeon.stairSouth)
 playerSprite.y += -5
 scene.cameraFollowSprite(playerSprite)
